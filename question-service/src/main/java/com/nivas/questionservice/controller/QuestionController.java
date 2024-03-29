@@ -56,9 +56,13 @@ public class QuestionController {
         return questionService.getScore(responses);
     }
 
-
-    // generate
-    // getQuestions (questionid)
-    // getScore
+    @PutMapping("update/{id}")
+    public ResponseEntity<String> updateQuestion(@PathVariable Integer id,@RequestBody Question question) {
+        return questionService.updateQuestion(id,question);
+    }
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<String> deleteQuestion(@PathVariable Integer id) {
+        return questionService.deleteQuestion(id);
+    }
 
 }

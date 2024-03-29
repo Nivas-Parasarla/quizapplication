@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,5 +83,26 @@ public class QuestionService {
                 right++;
         }
         return new ResponseEntity<>(right, HttpStatus.OK);
+    }
+
+    public ResponseEntity<String> deleteQuestion(Integer id) {
+        questionDao.deleteById(id);
+       return new ResponseEntity<>("Deleted",HttpStatus.OK);
+    }
+
+    @Transactional
+    public ResponseEntity<String> updateQuestion(Integer id,Question question) {
+        Question existingQuestion = questionDao.findById(id).get();
+        existingQuestion.setQuestionTitle(question.getQuestionTitle());
+        existingQuestion.setOption1(question.getOption1());
+        existingQuestion.setOption2(question.getOption2());
+        existingQuestion.setOption3(question.getOption3());
+        existingQuestion.setOption4(question.getOption4());
+        existingQuestion.setAnswer(question.getAnswer());
+        existingQuestion.setDifficult_level(question.getDifficult_level());
+        existingQuestion.setCategory(question.getCategory());
+        questionDao.save(existingQuestion);
+
+        return  new ResponseEntity<>("Updated",HttpStatus.OK);
     }
 }
