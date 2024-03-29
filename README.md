@@ -1,5 +1,5 @@
 
-Sure, here's a basic outline for a README file for your backend quiz application:
+
 
 **Backend Quiz Application**
 This is a backend quiz application designed to allow users to create quizzes based on categories such as Java, Python, etc.
