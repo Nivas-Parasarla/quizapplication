@@ -43,8 +43,8 @@ public class QuestionService {
         return new ResponseEntity<>("success",HttpStatus.CREATED);
     }
 
-    public ResponseEntity<List<Integer>> getQuestionsForQuiz(String categoryName, Integer numQuestions) {
-        List<Integer> questions = questionDao.findRandomQuestionsByCategory(categoryName, numQuestions);
+    public ResponseEntity<List<Integer>> getQuestionsForQuiz(String category, Integer numQuestions) {
+        List<Integer> questions = questionDao.findRandomQuestionsByCategory(category, numQuestions);
         return new ResponseEntity<>(questions, HttpStatus.OK);
     }
 
@@ -77,7 +77,8 @@ public class QuestionService {
 
         for(Response response : responses){
             Question question = questionDao.findById(response.getId()).get();
-            if(response.getResponse().equals(question.getRightAnswer()))
+            System.out.println(response.getId()+" "+response.getResponse()+" "+question.getAnswer());
+            if(response.getResponse().equals(question.getAnswer()))
                 right++;
         }
         return new ResponseEntity<>(right, HttpStatus.OK);
