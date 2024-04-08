@@ -99,7 +99,7 @@ public class QuestionService {
         existingQuestion.setOption3(question.getOption3());
         existingQuestion.setOption4(question.getOption4());
         existingQuestion.setAnswer(question.getAnswer());
-        existingQuestion.setDifficult_level(question.getDifficult_level());
+        existingQuestion.setDifficultLevel(question.getDifficultLevel());
         existingQuestion.setCategory(question.getCategory());
         questionDao.save(existingQuestion);
 
